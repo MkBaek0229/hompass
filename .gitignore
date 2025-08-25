@@ -1,4 +1,4 @@
-Rademe.md
+reademe.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
