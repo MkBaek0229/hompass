@@ -15,26 +15,44 @@
             <h1 class="text-[32px] leading-tight ">현재 사용자의<br> 연령대는 어떻게 되시나요?</h1>
         </div>
 
+        <form action="/choice/choice_menu" method="post">
+        {{#isChoiceMenu1}}
+            <button name="option" value="1번선택지" class="mt-8 w-full py-3 rounded-full bg-green-400 text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
+                <span>성인/청소년 : </span>
+                <span>권장량 기준 영양 섭취 분석</span>
+            </button>
+        {{/isChoiceMenu1}}
+        {{^isChoiceMenu1}}
+            <button name="option" value="1번선택지" class="mt-8 w-full py-3 rounded-full hover:bg-green-400 hover:text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
+                <span>성인/청소년 : </span>
+                <span>권장량 기준 영양 섭취 분석</span>
+            </button>
+        {{/isChoiceMenu1}}
+        </form>
 
-        <button class="mt-8 w-full py-3 rounded-full hover:bg-green-400 hover:text-white focus:bg-green-400 focus:text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
-            <span>성인/청소년 : </span>
-            <span>권장량 기준 영양 섭취 분석</span>
-        </button>
-
-        <button class="mt-8 w-full py-3 rounded-full hover:bg-green-400 hover:text-white focus:bg-green-400 focus:text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
+        <form action="/choice/choice_menu" method="post">
+        {{#isChoiceMenu2}}
+            <button name="option" value="2번선택지" class="mt-8 w-full py-3 rounded-full bg-green-400 text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
+                <span>아동 (유치원 / 초등) : </span>
+                <span>성장에 필요한 영양 섭취 분석</span>
+            </button>
+        {{/isChoiceMenu2}}
+        {{^isChoiceMenu2}}
+        <button name="option" value="2번선택지" class="mt-8 w-full py-3 rounded-full hover:bg-green-400 hover:text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
             <span>아동 (유치원 / 초등) : </span>
             <span>성장에 필요한 영양 섭취 분석</span>
         </button>
+        {{/isChoiceMenu2}}
+        </form>
 
-
-        <a
-                href="/choice"
+        <button
+                name="option"
+                type="submit"
                 class="mt-8 w-full py-3 rounded-2xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2"
-                aria-label="시작하기"
         >
-            시작하기
+            자가진단 시작
 
-        </a>
+        </button>
 
     </section>
 </main>
