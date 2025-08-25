@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body class="font-['Freesentation-9Black'] mt-[10%]">
+{{>layouts/header}}
+<main class="max-w-[475px] mx-auto px-4 pt-4 pb-28">
+    <section aria-label="홈 메인">
+        <div class="px-2 py-6">
+            <h1 class="text-[32px] leading-tight ">현재 사용자의<br> 연령대는 어떻게 되시나요?</h1>
+        </div>
+
+
+        <button class="mt-8 w-full py-3 rounded-full hover:bg-green-400 hover:text-white focus:bg-green-400 focus:text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
+            <span>성인/청소년 : </span>
+            <span>권장량 기준 영양 섭취 분석</span>
+        </button>
+
+        <button class="mt-8 w-full py-3 rounded-full hover:bg-green-400 hover:text-white focus:bg-green-400 focus:text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
+            <span>아동 (유치원 / 초등) : </span>
+            <span>성장에 필요한 영양 섭취 분석</span>
+        </button>
+
+
+        <a
+                href="/choice"
+                class="mt-8 w-full py-3 rounded-2xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2"
+                aria-label="시작하기"
+        >
+            시작하기
+
+        </a>
+
+    </section>
+</main>
+{{>layouts/footer}}
+</body>
+</html>
