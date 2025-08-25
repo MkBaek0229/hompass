@@ -721,6 +721,11 @@ video {
   font-family: 'Freesentation-9Black';
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-\[32px\] {
   font-size: 32px;
 }

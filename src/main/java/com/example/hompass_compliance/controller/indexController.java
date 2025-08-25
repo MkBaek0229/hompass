@@ -35,12 +35,18 @@ public class indexController {
         else if(now_choice.equals("2번선택지")) {
             redirect.addFlashAttribute("isChoiceMenu2", true);
         }
+
+
+        redirect.addFlashAttribute("selectedMenu", now_choice);
+
         return "redirect:/choice";
     }
-//    @GetMapping("/choice/dicide")
-//    public String choiceDicide(){
-//        return "";
-//    }
+
+    @PostMapping("/choice/dicide_menu")
+    public String choiceDicide(ChoiceForm form){
+        System.out.println(form.toString());
+        return "";
+    }
 
 }
 

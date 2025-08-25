@@ -45,14 +45,24 @@
         {{/isChoiceMenu2}}
         </form>
 
-        <button
-                name="option"
-                type="submit"
-                class="mt-8 w-full py-3 rounded-2xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2"
-        >
-            자가진단 시작
 
-        </button>
+        {{#selectedMenu}}
+            <form action="choice/dicide_menu" method="post">
+                <button
+                        name="decide"
+                        value="{{selectedMenu}}"
+                        type="submit"
+                        class="mt-8 w-full py-3 rounded-2xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2"
+                >
+                    자가진단 시작
+
+                </button>
+            </form>
+        {{/selectedMenu}}
+
+        {{^selectedMenu}}
+            <div class="text-3xl">버튼을 클릭하셔야합니다.</div>
+        {{/selectedMenu}}
 
     </section>
 </main>
