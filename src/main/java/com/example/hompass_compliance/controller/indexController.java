@@ -10,8 +10,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Random;
+
 @Controller
 public class indexController {
+    private String[] random_nickname = {"돌고래", "개발자", "오랑우탄"};
+
+
+    public String createRandomNickname() {
+        Random random = new Random();
+        String nickname = this.random_nickname[random.nextInt(this.random_nickname.length)];
+        return nickname;
+    }
+
     @Autowired
     private UsersRepository userRepository;
 
@@ -48,6 +59,7 @@ public class indexController {
     public String choiceDicide(ChoiceForm form, Model model){
         System.out.println(form.toString());
 
+        form.setNickname(createRandomNickname());
         // 1. DTO를 엔터티로 변환
         Users user= form.toEntity();
         // 2. 리파지터리로 엔터티를 DB에 저장
