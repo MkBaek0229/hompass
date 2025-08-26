@@ -1,8 +1,11 @@
 package com.example.hompass_compliance.controller;
 
 import com.example.hompass_compliance.dto.ChoiceForm;
+import com.example.hompass_compliance.entity.Question;
 import com.example.hompass_compliance.entity.Users;
+import com.example.hompass_compliance.repository.QuestionRepository;
 import com.example.hompass_compliance.repository.UsersRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,11 +14,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 @Slf4j
 @Controller
 public class indexController {
+    @Autowired
+    private UsersRepository userRepository;
+    @Autowired
+    private QuestionRepository questionRepository;
+
     private String[] random_nickname = {"돌고래", "개발자", "오랑우탄"};
 
 
@@ -24,9 +33,6 @@ public class indexController {
         String nickname = this.random_nickname[random.nextInt(this.random_nickname.length)];
         return nickname;
     }
-
-    @Autowired
-    private UsersRepository userRepository;
 
     @GetMapping({"/"})
     public String index(Model model) {
@@ -68,10 +74,18 @@ public class indexController {
         log.info(user.toString());
         // 2. 리파지터리로 엔터티를 DB에 저장
         Users saved = userRepository.save(user);
-        log.info(saved.toString());
+//        log.info(saved.toString());
 //        System.out.println(saved.toString());
+
+        System.out.println(saved.getIs_age());
         model.addAttribute("isCheck", true);
 
+        // 3. 질문 테이블의 모든 데이터 가져오기
+        ArrayList<Question> questionEntityList = questionRepository.findAll();
+
+        System.out.println(questionEntityList);
+        // 4. 모델에 데이터 등록하기
+        model.addAttribute("questionList", questionEntityList);
         return "page/check";
     }
 

@@ -39,3 +39,16 @@
 유사한 문제에 대한 검색을 서칭하여 위의 블로그 글을 찾아냈고 해당 글을 참조하여
 h2데이터베이스에서 User가 예약어이기때문에 테이블명으로 사용할수 없다는것을 알게되어
 user뒤에 s를 붙여 users로 작성해주니 문제없이 작동되었다.
+
+3. No default constructor for entity
+
+문제점: 연령 선택 -> 자가진단 페이지에서 question 테이블에 임시로 넣어둔 데이터들을 모두 조회해와서.
+해당 리스트들을 모델에 추가하여 동적렌더링을 시도하는 과정에서.
+>ArrayList<Question> questionEntityList = questionRepository.findAll();
+
+이부분에서 에러가 발생하고있었는데. No default constructor for entity에러가 발생하였음.
+
+해결방법 : - https://velog.io/@jaeyumn/JPA-No-default-constructor-for-entity
+
+Question Entity의 Lombok을 통해 @NoArgsConstructor 애터네이션을 작성해서 기본생성자를 만들어주었더니 해결되었다. 
+

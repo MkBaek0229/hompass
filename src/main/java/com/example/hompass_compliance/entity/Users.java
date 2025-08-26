@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.ToString;
 
 
@@ -20,7 +21,11 @@ public class Users {
     @Column
     private String is_age;
 
-//    public Users(Long id, String nickname, String is_age) {
+    public String getIs_age() {
+        return is_age;
+    }
+
+    //    public Users(Long id, String nickname, String is_age) {
 //        this.id = id;
 //        this.nickname = nickname;
 //        this.is_age = is_age;
