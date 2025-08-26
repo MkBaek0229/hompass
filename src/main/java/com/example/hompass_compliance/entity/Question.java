@@ -21,4 +21,8 @@ public class Question {
      private String contents;
      @Column
      private String is_adult;
+
+    public String getTopic() {
+        return topic;
+    }
 }

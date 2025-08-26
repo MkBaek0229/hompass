@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Slf4j
@@ -84,6 +86,13 @@ public class indexController {
         ArrayList<Question> questionEntityList = questionRepository.findAll();
 
         System.out.println(questionEntityList);
+
+        // 4. ArrayList의 중복제거된 topic들을 모으기.
+        ArrayList<String> topic_filter = new ArrayList<String>();
+
+        for(String strValue : questionEntityList)
+
+
         // 4. 모델에 데이터 등록하기
         model.addAttribute("questionList", questionEntityList);
         return "page/check";
