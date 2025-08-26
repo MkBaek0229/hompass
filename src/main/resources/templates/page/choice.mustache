@@ -10,10 +10,13 @@
 <body class="font-['Freesentation-9Black'] mt-[10%]">
 {{>layouts/header}}
 <main class="max-w-[475px] mx-auto px-4 pt-4 pb-28">
-    <section aria-label="홈 메인">
+    <section aria-label="사용자 연령 선택 페이지">
         <div class="px-2 py-6">
             <h1 class="text-[32px] leading-tight ">현재 사용자의<br> 연령대는 어떻게 되시나요?</h1>
         </div>
+
+
+
 
         <form action="/choice/choice_menu" method="post">
         {{#isChoiceMenu1}}
@@ -47,7 +50,7 @@
 
 
         {{#selectedMenu}}
-            <form action="choice/dicide_menu" method="post">
+            <form action="check" method="post">
                 <button
                         name="decide"
                         value="{{selectedMenu}}"
@@ -60,9 +63,9 @@
             </form>
         {{/selectedMenu}}
 
-        {{^selectedMenu}}
-            <div class="text-3xl">버튼을 클릭하셔야합니다.</div>
-        {{/selectedMenu}}
+
+
+
 
     </section>
 </main>

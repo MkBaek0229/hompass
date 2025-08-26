@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자가진단 체크 페이지</title>
+
+    <link href="/main.css" rel="stylesheet">
+
+</head>
+<body class="font-['Freesentation-9Black'] mt-[10%]">
+{{>layouts/header}}
+<main class="max-w-[475px] mx-auto px-4 pt-4 pb-28">
+    <section aria-label="자가진단 체크 페이지">
+        <div class="flex gap-[5%] items-center">
+            <a href="./choice"><svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+            </svg></a>
+            <h2 class="text-[24px] leading-tight">
+                건강 자가진단 <span>1/10</span>
+            </h2>
+        </div>
+            <details class="dropdown font-['Freesentation-5Medium'] mt-8 w-full ">
+                <summary class="btn m-1  text-2xl">자가진단 목록</summary>
+
+                <ul class="menu dropdown-content bg-white rounded-box z-1 w-full p-2 shadow-sm border border-solid border-black">
+                    <li id="menu_1" class="hover:bg-green-400 hover:text-white"><a>식사 빈도 패턴</a></li>
+                    <li id="menu_2" class="hover:bg-green-400 hover:text-white"><a>조리 / 가공 선호도</a></li>
+                </ul>
+            </details>
+
+            <div id="self_container" class="hidden">
+            <div class="w-full mt-[5%] text-center">
+                <h3 class="btn m-1 text-3xl">나는 하루 2회 이하의 식사를 한다</h3>
+                <span class="text-md font-['Freesentation-5Medium'] text-gray-400">올바른 답변에 체크해주세요</span>
+            </div>
+
+            <div class="flex gap-[20px] mt-2 flex-col">
+            <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😄<br> 매우 그렇다</button>
+            <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😊<br> 그렇다</button>
+            <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😐<br> 보통이다</button>
+            <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">🙄<br> 아니다</button>
+            <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😬<br> 매우 아니다</button>
+            </div>
+
+
+            </div>
+    </section>
+</main>
+{{>layouts/footer}}
+</body>
+
+<script>
+    let menu_1 = document.getElementById("menu_1");
+    let menu_2 = document.getElementById("menu_2");
+
+
+    menu_1.addEventListener("click", (event) => {
+        console.log("메뉴 1 클릭");
+        self_container.style.display = 'block';
+});
+
+</script>
+</html>

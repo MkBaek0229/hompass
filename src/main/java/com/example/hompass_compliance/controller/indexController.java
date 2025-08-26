@@ -42,10 +42,12 @@ public class indexController {
         return "redirect:/choice";
     }
 
-    @PostMapping("/choice/dicide_menu")
-    public String choiceDicide(ChoiceForm form){
+    @PostMapping("/check")
+    public String choiceDicide(ChoiceForm form, Model model){
         System.out.println(form.toString());
-        return "";
+        model.addAttribute("isCheck", true);
+
+        return "page/check";
     }
 
 }
