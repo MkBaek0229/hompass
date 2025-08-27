@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="/main.css" rel="stylesheet">
+
+</head>
+<body class="font-['Freesentation-9Black'] mt-[10%]">
+{{>layouts/header}}
+<main class="max-w-[475px] mx-auto px-4 pt-4 pb-28">
+    <div class="flex gap-[5%] items-center">
+        <a href="/check"><svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+        </svg></a>
+
+
+        <h2 class="text-[24px] leading-tight">
+            건강 자가진단 <span>1/10</span>
+        </h2>
+    </div>
+
+{{#questionList}}
+<div id="self_container">
+    <div class="w-full mt-[5%] text-center">
+        <h3 class="btn m-1 text-3xl">{{contents}}</h3>
+        <span class="text-md font-['Freesentation-5Medium'] text-gray-400">올바른 답변에 체크해주세요</span>
+    </div>
+
+    <div class="flex gap-[20px] mt-2 flex-col">
+        <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😄<br> 매우 그렇다</button>
+        <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😊<br> 그렇다</button>
+        <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😐<br> 보통이다</button>
+        <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">🙄<br> 아니다</button>
+        <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😬<br> 매우 아니다</button>
+    </div>
+
+
+</div>
+{{/questionList}}
+</main>
+{{>layouts/footer}}
+
+</body>
+</html>

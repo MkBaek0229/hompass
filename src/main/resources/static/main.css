@@ -599,8 +599,8 @@ video {
   display: inline-flex;
 }
 
-.hidden {
-  display: none;
+.contents {
+  display: contents;
 }
 
 .h-4 {

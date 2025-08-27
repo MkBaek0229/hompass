@@ -68,8 +68,9 @@ public class indexController {
         return "redirect:/choice";
     }
 
-    @PostMapping("/check")
-    public String choiceDicide(ChoiceForm form, Model model){
+
+    @PostMapping("/choice/decide")
+    public String choiceDicide(ChoiceForm form, RedirectAttributes redirectAttributes){
         log.info(form.toString());
         form.setNickname(createRandomNickname());
         // 1. DTO를 엔터티로 변환
@@ -80,58 +81,81 @@ public class indexController {
         log.info(saved.toString());
 
         System.out.println(saved.getIs_age());
-        model.addAttribute("isCheck", true);
+        return "redirect:/check";
+    }
 
-        // 3. 질문 테이블의 모든 데이터 가져오기
-            ArrayList<Question> questionEntityList = questionRepository.findAll();
+    @GetMapping("/check")
+    public String check(Model model) {
+
+    // 3. 질문 테이블의 모든 데이터 가져오기
+    ArrayList<Question> questionEntityList = questionRepository.findAll();
 
             System.out.println(questionEntityList);
-        // 4. 지금 질문 테이블의 모든데이터에서 id값들만 따로 추출.
+    // 4. 지금 질문 테이블의 모든데이터에서 id값들만 따로 추출.
 
-        ArrayList<Integer> topic_id_list = new ArrayList<>(8);
+    ArrayList<Integer> topic_id_list = new ArrayList<>(8);
         for(Question i : questionEntityList) {
 
-            if(topic_id_list.contains(i.getTopic_id())) {
-                continue;
-            }
-            else {
-                topic_id_list.add(i.getTopic_id());
-            }
+        if(topic_id_list.contains(i.getTopic_id())) {
+            continue;
         }
+        else {
+            topic_id_list.add(i.getTopic_id());
+        }
+    }
 
-        ArrayList<Topic> topic_list = new ArrayList<>(8);
+    ArrayList<Topic> topic_list = new ArrayList<>(8);
 
-        // 5. 아이디 값에 따른 name을 모델 데이터에 등록해서 뷰에뿌림.
+    // 5. 아이디 값에 따른 name을 모델 데이터에 등록해서 뷰에뿌림.
         for(Integer i : topic_id_list) {
 
-            Topic topicEntity = topicRepository.findAllById(i).orElse(null);
+        Topic topicEntity = topicRepository.findAllById(i).orElse(null);
 
-            System.out.println(topicEntity);
-            topic_list.add(topicEntity);
-//
+        System.out.println(topicEntity);
+        topic_list.add(topicEntity);
 
-        }
+
+    }
 
         System.out.println(topic_list);
 
-        // 6. 모델에 데이터 등록하기
+    // 6. 모델에 데이터 등록하기
+        model.addAttribute("isCheck", true);
         model.addAttribute("topicList",topic_list);
-
-
-
         return "page/check";
     }
 
-//    @GetMapping("/check/{id}")
-//    public String show(@PathVariable Long id, Model model) {
+    @GetMapping("/check/{id}")
+    public String show(@PathVariable Long id, Model model) {
+        // 1. 질문 테이블 데이터 모두 가져오기.
+        ArrayList<Question> questionEntityList = questionRepository.findAll();
+        // 2. 질문 테이블 데이터 반복문 돌리면서. topic_id값과 매개변수로 받은 id값이 일치하는 데이터만 일단 arraylist에 담을것?
+        ArrayList<Question> question_list = new ArrayList<>(8);
+        if(question_list.isEmpty()) {
+            for (Question i : questionEntityList) {
+                Long topic_id = (long) i.getTopic_id();
+                if (topic_id.equals(id)) {
+                    question_list.add(i);
+                }
+
+            }
+        } else {
+            question_list.clear();
+        }
+
+        System.out.println("question_list : "+ question_list);
+        System.out.println("-----------------------------------------");
+
+
 //        // 1. id를 조회해 데이터 가져오기.
-//        Question questionEntity = questionRepository.findById(id).orElse(null);
-//        System.out.println(questionEntity);
-////        // 2. 모델에 데이터 등록하기
-////        model.addAttribute("question",questionEntity);
-//
-//        return "page/test";
-//    }
+        Question questionEntity = questionRepository.findById(id).orElse(null);
+        System.out.println(questionEntity);
+//        // 2. 모델에 데이터 등록하기
+
+        model.addAttribute("questionList",question_list);
+
+        return "page/test";
+    }
 
 
 }

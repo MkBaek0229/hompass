@@ -22,35 +22,19 @@
                 건강 자가진단 <span>1/10</span>
             </h2>
         </div>
+
             <details class="dropdown font-['Freesentation-5Medium'] mt-8 w-full ">
                 <summary class="btn m-1  text-2xl">자가진단 목록</summary>
 
                 <ul class="menu dropdown-content bg-white rounded-box z-1 w-full p-2 shadow-sm border border-solid border-black">
                     {{#topicList}}
-                    <form action="/choice/choice_menu" method="post">
-                         <li id="menu_1" name="choice_topic" value="{{.}}" class="hover:bg-green-400 hover:text-white"><a>{{name}}</a></li>
-                    </form>
+                         <li id="menu_1" class="hover:bg-green-400 hover:text-white"><a href="/check/{{id}}">{{name}}</a></li>
                     {{/topicList}}
                 </ul>
             </details>
 
 
-            <div id="self_container" class="hidden">
-            <div class="w-full mt-[5%] text-center">
-                <h3 class="btn m-1 text-3xl">나는 하루 2회 이하의 식사를 한다</h3>
-                <span class="text-md font-['Freesentation-5Medium'] text-gray-400">올바른 답변에 체크해주세요</span>
-            </div>
 
-            <div class="flex gap-[20px] mt-2 flex-col">
-            <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😄<br> 매우 그렇다</button>
-            <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😊<br> 그렇다</button>
-            <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😐<br> 보통이다</button>
-            <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">🙄<br> 아니다</button>
-            <button class="w-full border boder-gray border-solid rounded-full shadow-lg  hover:bg-green-400 hover:text-white hover:text-2xl">😬<br> 매우 아니다</button>
-            </div>
-
-
-            </div>
     </section>
 </main>
 {{>layouts/footer}}
