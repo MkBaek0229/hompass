@@ -17,4 +17,8 @@ public class Topic {
     private Long id;
     @Column
     private String name;
+
+    public String getName() {
+        return name;
+    }
 }

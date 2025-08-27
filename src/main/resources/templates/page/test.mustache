@@ -9,7 +9,6 @@
 
 </head>
 <body class="font-['Freesentation-9Black'] mt-[10%]">
-{{>layouts/header}}
 <main class="max-w-[475px] mx-auto px-4 pt-4 pb-28">
     <div class="flex gap-[5%] items-center">
         <a href="/check"><svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
@@ -18,7 +17,7 @@
 
 
         <h2 class="text-[24px] leading-tight">
-            건강 자가진단 <span>1/10</span>
+            {{topicTitle}}
         </h2>
     </div>
 
@@ -41,7 +40,7 @@
 </div>
 {{/questionList}}
 </main>
-{{>layouts/footer}}
+
 
 </body>
 </html>

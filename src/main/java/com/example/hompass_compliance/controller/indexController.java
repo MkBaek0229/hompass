@@ -143,16 +143,19 @@ public class indexController {
             question_list.clear();
         }
 
-        System.out.println("question_list : "+ question_list);
-        System.out.println("-----------------------------------------");
 
-
-//        // 1. id를 조회해 데이터 가져오기.
-        Question questionEntity = questionRepository.findById(id).orElse(null);
-        System.out.println(questionEntity);
-//        // 2. 모델에 데이터 등록하기
+        // 2. 모델에 데이터 등록하기
 
         model.addAttribute("questionList",question_list);
+
+        // 선택한 자가진단 토픽을 전달해주고싶음.
+        Topic topicEntity = topicRepository.findById(id).orElse(null);
+
+        String topicTitle = topicEntity.getName();
+
+        model.addAttribute("topicTitle",topicTitle);
+
+
 
         return "page/test";
     }
