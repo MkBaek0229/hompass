@@ -16,13 +16,15 @@ public class Question {
      @GeneratedValue
      private Long id;
      @Column
-     private String topic;
+     private Integer topic_id;
      @Column
      private String contents;
      @Column
      private String is_adult;
 
-    public String getTopic() {
-        return topic;
+    public Integer getTopic_id() {
+        return topic_id;
     }
+
+
 }

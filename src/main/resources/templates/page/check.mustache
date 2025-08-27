@@ -27,10 +27,10 @@
 
                 <ul class="menu dropdown-content bg-white rounded-box z-1 w-full p-2 shadow-sm border border-solid border-black">
                     {{#topicList}}
-                    <li id="menu_1" class="hover:bg-green-400 hover:text-white"><a>{{.}}</a></li>
+                    <form action="/choice/choice_menu" method="post">
+                         <li id="menu_1" name="choice_topic" value="{{.}}" class="hover:bg-green-400 hover:text-white"><a>{{name}}</a></li>
+                    </form>
                     {{/topicList}}
-<!--                    <li id="menu_2" class="hover:bg-green-400 hover:text-white"><a>조리 / 가공 선호도</a></li>-->
-
                 </ul>
             </details>
 
