@@ -8,4 +8,5 @@ import java.util.ArrayList;
 public interface QuestionRepository extends CrudRepository<Question, Long> {
     @Override
     ArrayList<Question> findAll();
+
 }

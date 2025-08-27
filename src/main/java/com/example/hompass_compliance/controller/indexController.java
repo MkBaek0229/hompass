@@ -5,7 +5,7 @@ import com.example.hompass_compliance.entity.Question;
 import com.example.hompass_compliance.entity.Users;
 import com.example.hompass_compliance.repository.QuestionRepository;
 import com.example.hompass_compliance.repository.UsersRepository;
-import lombok.RequiredArgsConstructor;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -86,15 +83,30 @@ public class indexController {
         ArrayList<Question> questionEntityList = questionRepository.findAll();
 
         System.out.println(questionEntityList);
+        // 4. topic을 얻어올건데. 중복을 제거하고 얻어냄.
 
-        // 4. ArrayList의 중복제거된 topic들을 모으기.
-        ArrayList<String> topic_filter = new ArrayList<String>();
+//        ArrayList<Map<String,Object>> topiclist = new ArrayList<>();
+        ArrayList<String> topiclist = new ArrayList<>(8);
+        for(Question i : questionEntityList) {
 
-        for(String strValue : questionEntityList)
+            System.out.println(i.getTopic());
+            if(topiclist.contains(i.getTopic())) {
+              System.out.println("이미 값이 존재합니다." + i.getTopic());
+              continue;
+            }
+            else {
+                System.out.println("값이 존재하지 않아서 값을 추가합니다"+ i.getTopic());
+                topiclist.add(i.getTopic());
+            }
+        }
 
+        // topiclist를 모델에 데이터로 등록하기.
+        System.out.println(topiclist);
 
         // 4. 모델에 데이터 등록하기
-        model.addAttribute("questionList", questionEntityList);
+        model.addAttribute("topicList", topiclist);
+
+
         return "page/check";
     }
 

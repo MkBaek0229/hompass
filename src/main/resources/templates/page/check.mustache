@@ -26,9 +26,9 @@
                 <summary class="btn m-1  text-2xl">자가진단 목록</summary>
 
                 <ul class="menu dropdown-content bg-white rounded-box z-1 w-full p-2 shadow-sm border border-solid border-black">
-                    {{#questionList}}
-                    <li id="menu_1" class="hover:bg-green-400 hover:text-white"><a>{{topic}}</a></li>
-                    {{/questionList}}
+                    {{#topicList}}
+                    <li id="menu_1" class="hover:bg-green-400 hover:text-white"><a>{{.}}</a></li>
+                    {{/topicList}}
 <!--                    <li id="menu_2" class="hover:bg-green-400 hover:text-white"><a>조리 / 가공 선호도</a></li>-->
 
                 </ul>
