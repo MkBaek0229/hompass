@@ -56,11 +56,13 @@
         main_con.innerHTML = '';
 
 
-        let tdee_form = document.createElement("form");
-        tdee_form.id = 'myDynamicForm';
+          const form = document.createElement("form");
+          form.id = 'myDynamicForm';
+          form.action = '/tdee';   // ★ 컨트롤러 매핑 URL
+          form.method = 'post';         // ★ GET/POST 명확히
         start_btn.remove();
 
-        tdee_form.innerHTML = `
+        form.innerHTML = `
         <div>
             <h2 class="text-[24px] leading-tight">하루 필요 칼로리 계산</h2>
             <div class='flex flex-col mt-6'>
@@ -107,20 +109,20 @@
 
          </div>
 
-         <a
+         <button
                 id="next"
                 type="submit"
                 class="mt-8 w-full py-3 rounded-2xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2"
         >
             다음
-        </a>
+        </button>
 
          </form>
 
         `;
 
 
-        main_con.appendChild(tdee_form);
+        main_con.appendChild(form);
 
 
 
