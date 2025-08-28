@@ -1,6 +1,7 @@
 package com.example.hompass_compliance.controller;
 
 import com.example.hompass_compliance.dto.ChoiceForm;
+import com.example.hompass_compliance.dto.UsersForm;
 import com.example.hompass_compliance.entity.Question;
 import com.example.hompass_compliance.entity.Topic;
 import com.example.hompass_compliance.entity.Users;
@@ -44,6 +45,18 @@ public class indexController {
         return "home";
     }
 
+    @PostMapping({"/tdee"})
+    public String tdee(UsersForm usersForm ,Model model) {
+        usersForm.setNickname(createRandomNickname());
+        // 1. DTO를 엔터티로 변환
+        Users user= usersForm.toEntity();
+        log.info(user.toString());
+        // 2. 리파지터리로 엔터티를 DB에 저장
+        Users saved = userRepository.save(user);
+        log.info(saved.toString());
+        System.out.println("요청 들어옴");
+        return "";
+    }
     @GetMapping({"/choice"})
     public String choice(Model model) {
         model.addAttribute("isChoice", true);
@@ -62,6 +75,9 @@ public class indexController {
         else if(now_choice.equals("2번선택지")) {
             redirect.addFlashAttribute("isChoiceMenu2", true);
         }
+        else if(now_choice.equals("3번선택지")){
+            redirect.addFlashAttribute("isChoiceMenu3", true);
+        }
 
         redirect.addFlashAttribute("selectedMenu", now_choice);
 
@@ -69,20 +85,20 @@ public class indexController {
     }
 
 
-    @PostMapping("/choice/decide")
-    public String choiceDicide(ChoiceForm form, RedirectAttributes redirectAttributes){
-        log.info(form.toString());
-        form.setNickname(createRandomNickname());
-        // 1. DTO를 엔터티로 변환
-        Users user= form.toEntity();
-        log.info(user.toString());
-        // 2. 리파지터리로 엔터티를 DB에 저장
-        Users saved = userRepository.save(user);
-        log.info(saved.toString());
-
-        System.out.println(saved.getIs_age());
-        return "redirect:/check";
-    }
+//    @PostMapping("/choice/decide")
+//    public String choiceDicide(ChoiceForm form, RedirectAttributes redirectAttributes){
+//        log.info(form.toString());
+//        form.setNickname(createRandomNickname());
+//        // 1. DTO를 엔터티로 변환
+//        Users user= form.toEntity();
+//        log.info(user.toString());
+//        // 2. 리파지터리로 엔터티를 DB에 저장
+//        Users saved = userRepository.save(user);
+//        log.info(saved.toString());
+//
+//
+//        return "redirect:/check";
+//    }
 
     @GetMapping("/check")
     public String check(Model model) {
@@ -159,6 +175,7 @@ public class indexController {
 
         return "page/test";
     }
+
 
 
 }

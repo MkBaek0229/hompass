@@ -23,15 +23,13 @@
             </h2>
         </div>
 
-            <details class="dropdown font-['Freesentation-5Medium'] mt-8 w-full ">
-                <summary class="btn m-1  text-2xl">자가진단 목록</summary>
 
-                <ul class="menu dropdown-content bg-white rounded-box z-1 w-full p-2 shadow-sm border border-solid border-black">
-                    {{#topicList}}
-                         <li id="menu_1" class="hover:bg-green-400 hover:text-white"><a href="/check/{{id}}">{{name}}</a></li>
-                    {{/topicList}}
-                </ul>
-            </details>
+            <ul class="menu dropdown-content bg-white rounded-box z-1 w-full p-2 shadow-sm border border-solid border-black mt-5">
+                {{#topicList}}
+                     <li id="menu_1" class="hover:bg-green-400 hover:text-white"><a href="/check/{{id}}">{{name}}</a></li>
+                {{/topicList}}
+            </ul>
+
 
 
 
@@ -40,15 +38,5 @@
 {{>layouts/footer}}
 </body>
 
-<script>
-    let menu_1 = document.getElementById("menu_1");
-    let menu_2 = document.getElementById("menu_2");
 
-
-    menu_1.addEventListener("click", (event) => {
-        console.log("메뉴 1 클릭");
-        self_container.style.display = 'block';
-});
-
-</script>
 </html>

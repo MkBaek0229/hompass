@@ -12,15 +12,10 @@ import java.util.Random;
 public class ChoiceForm {
     private String option;
     private String decide;
-    private String nickname;
 
 
     public String getOption() {
         return option;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
 //    public ChoiceForm(String option, String decide) {
@@ -38,7 +33,5 @@ public class ChoiceForm {
 //                '}';
 //    }
 
-    public Users toEntity() {
-        return new Users(null,nickname,decide);
-    }
+
 }

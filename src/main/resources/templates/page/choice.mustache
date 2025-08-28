@@ -12,37 +12,94 @@
 <main class="max-w-[475px] mx-auto px-4 pt-4 pb-28">
     <section aria-label="사용자 연령 선택 페이지">
         <div class="px-2 py-6">
-            <h1 class="text-[32px] leading-tight ">현재 사용자의<br> 연령대는 어떻게 되시나요?</h1>
+            <h1 class="text-[32px] leading-tight">현재 사용자의<br> 영양 섭취 목표는 무엇인가요?</h1>
         </div>
+
 
         <form action="/choice/choice_menu" method="post">
         {{#isChoiceMenu1}}
-            <button name="option" value="1번선택지" class="mt-8 w-full py-3 rounded-full bg-green-400 text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
-                <span>성인/청소년 : </span>
-                <span>권장량 기준 영양 섭취 분석</span>
+            <button name="option" value="1번선택지" class="mt-8 w-full py-1 rounded-2xl bg-green-400 text-white flex items-center items-center gap-2 border border-solid border-gray shadow-xl">
+                <div class="m-5 flex items-center gap-[20px]">
+                    <div>
+                        <img src="./images/choicePage_icon1.png" />
+                    </div>
+                    <div class="flex items-start flex-col">
+                        <span class="text-lg">근육량 증가</span>
+                        <span class="text-sm">벌크업 기준 영양 섭취 분석</span>
+                    </div>
+                </div>
             </button>
         {{/isChoiceMenu1}}
         {{^isChoiceMenu1}}
-            <button name="option" value="1번선택지" class="mt-8 w-full py-3 rounded-full hover:bg-green-400 hover:text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
-                <span>성인/청소년 : </span>
-                <span>권장량 기준 영양 섭취 분석</span>
+
+            <button name="option" value="1번선택지" class="mt-8 w-full py-1 rounded-2xl hover:bg-green-400 hover:text-white flex items-center items-center gap-2 border border-solid border-gray shadow-xl">
+                    <div class="m-5 flex items-center gap-[20px]">
+                        <div>
+                            <img src="./images/choicePage_icon1.png" />
+                        </div>
+                        <div class="flex items-start flex-col">
+                            <span class="text-lg">근육량 증가</span>
+                            <span class="text-sm">벌크업 기준 영양 섭취 분석</span>
+                        </div>
+                    </div>
             </button>
         {{/isChoiceMenu1}}
         </form>
 
         <form action="/choice/choice_menu" method="post">
         {{#isChoiceMenu2}}
-            <button name="option" value="2번선택지" class="mt-8 w-full py-3 rounded-full bg-green-400 text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
-                <span>아동 (유치원 / 초등) : </span>
-                <span>성장에 필요한 영양 섭취 분석</span>
+            <button name="option" value="2번선택지" class="mt-8 w-full py-1 rounded-2xl bg-green-400 text-white flex items-center items-center gap-2 border border-solid border-gray shadow-xl">
+                <div class="m-5 flex items-center gap-[20px]">
+                    <div>
+                        <img src="./images/choicePage_icon2.png" />
+                    </div>
+                    <div class="flex items-start flex-col">
+                        <span class="text-lg">생활형 섭취</span>
+                        <span class="text-sm">평균 권장량 기준 탄단지 섭취 분석</span>
+                    </div>
+                </div>
             </button>
         {{/isChoiceMenu2}}
         {{^isChoiceMenu2}}
-        <button name="option" value="2번선택지" class="mt-8 w-full py-3 rounded-full hover:bg-green-400 hover:text-white flex items-center justify-center gap-2 border border-solid border-gray shadow-xl">
-            <span>아동 (유치원 / 초등) : </span>
-            <span>성장에 필요한 영양 섭취 분석</span>
-        </button>
+            <button name="option" value="2번선택지" class="mt-8 w-full py-1 rounded-2xl hover:bg-green-400 hover:text-white flex items-center items-center gap-2 border border-solid border-gray shadow-xl">
+                <div class="m-5 flex items-center gap-[20px]">
+                    <div>
+                        <img src="./images/choicePage_icon2.png" />
+                    </div>
+                    <div class="flex items-start flex-col">
+                        <span class="text-lg">생활형 섭취</span>
+                        <span class="text-sm">평균 권장량 기준 탄단지 섭취 분석</span>
+                    </div>
+                </div>
+            </button>
         {{/isChoiceMenu2}}
+            {{#isChoiceMenu3}}
+                <button name="option" value="3번선택지" class="mt-8 w-full py-1 rounded-2xl bg-green-400 text-white flex items-center items-center gap-2 border border-solid border-gray shadow-xl">
+                    <div class="m-5 flex items-center gap-[20px]">
+                        <div>
+                            <img src="./images/choicePage_icon3.png" />
+                        </div>
+                        <div class="flex items-start flex-col">
+                            <span class="text-lg">다이어트</span>
+                            <span class="text-sm">다이어트 기준 탄단지 섭취 분석</span>
+                        </div>
+                    </div>
+                </button>
+            {{/isChoiceMenu3}}
+            {{^isChoiceMenu3}}
+                <button name="option" value="3번선택지" class="mt-8 w-full py-1 rounded-2xl hover:bg-green-400 hover:text-white flex items-center items-center gap-2 border border-solid border-gray shadow-xl">
+                    <div class="m-5 flex items-center gap-[20px]">
+                        <div>
+                            <img src="./images/choicePage_icon3.png" />
+                        </div>
+                        <div class="flex items-start flex-col">
+                            <span class="text-lg">다이어트</span>
+                            <span class="text-sm">다이어트 기준 탄단지 섭취 분석</span>
+                        </div>
+                    </div>
+                </button>
+            {{/isChoiceMenu3}}
+
         </form>
 
 

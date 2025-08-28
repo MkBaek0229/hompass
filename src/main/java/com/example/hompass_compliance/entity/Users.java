@@ -19,13 +19,19 @@ public class Users {
     @Column
     private String nickname;
     @Column
-    private String is_age;
+    private String man_woman;
+    @Column
+    private Integer age;
+    @Column
+    private Integer cm;
+    @Column
+    private Integer kg;
+    @Column
+    private String activity_level;
 
-    public String getIs_age() {
-        return is_age;
-    }
 
-    //    public Users(Long id, String nickname, String is_age) {
+
+//    public Users(Long id, String nickname, String is_age) {
 //        this.id = id;
 //        this.nickname = nickname;
 //        this.is_age = is_age;
