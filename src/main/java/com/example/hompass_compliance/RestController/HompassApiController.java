@@ -2,50 +2,41 @@ package com.example.hompass_compliance.RestController;
 
 import com.example.hompass_compliance.dto.UsersForm;
 import com.example.hompass_compliance.entity.Users;
-import com.example.hompass_compliance.repository.UsersRepository;
+import com.example.hompass_compliance.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 
 @RestController
 public class HompassApiController {
     @Autowired
-    private UsersRepository userRepository;
-
-    private String[] random_nickname = {"돌고래", "개발자", "오랑우탄"};
-
-
-    public String createRandomNickname() {
-        Random random = new Random();
-        String nickname = this.random_nickname[random.nextInt(this.random_nickname.length)];
-        return nickname;
-    }
+    private UsersService usersService;
 
 
     // Get
-    @GetMapping("/api/tdee")
-    public List<Users> index() {
-        return userRepository.findAll();
+    @GetMapping("/api/user")
+    public ResponseEntity<ArrayList<UsersForm>> index() {
+        // 서비스에 위임
+        ArrayList<UsersForm> dtos = usersService.users();
+        System.out.println(dtos);
+        return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
     // POST
-    @PostMapping("/api/tdee")
-    public Users tdee(@RequestBody UsersForm dto) {
-        dto.setNickname(createRandomNickname());
-        // 1. DTO를 엔터티로 변환
-        Users user = dto.toEntity();
-
-        // 2. 리파지터리로 엔터티를 DB에 저장
-        return userRepository.save(user);
-
+    @PostMapping("/api/user")
+    public ResponseEntity<UsersForm> create(@RequestBody UsersForm dto) {
+        // 서비스에 위임
+        UsersForm usersForm = usersService.create(dto);
+        // 결과 응답
+        return ResponseEntity.status(HttpStatus.OK).body(usersForm);
 
     }
 }

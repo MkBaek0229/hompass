@@ -36,6 +36,10 @@ public class indexController {
         return "home";
     }
 
+    @GetMapping({"/user"})
+    public String user(){
+        return "page/user";
+    }
 
     @GetMapping({"/choice"})
     public String choice(Model model) {

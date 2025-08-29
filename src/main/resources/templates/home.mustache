@@ -11,7 +11,7 @@
 {{>layouts/header}}
 <main class="max-w-[475px] mx-auto px-4 pt-4 pb-28">
     <section aria-label="홈 메인">
-        <div class="px-2 py-6" id="main_con">
+        <div class="px-2 py-6">
             <h2 class="text-[32px] leading-tight text-sig-color">
                 올바른 식습관<br>바른 방향으로 자리잡자
             </h2>
@@ -23,8 +23,9 @@
                 </div>
             </div>
         </div>
-        <!--href="/choice"-->
+
         <a
+                href="/user"
                 id="start_btn"
                 data-dialog-target="modal"
                 class="mt-8 w-full py-3 rounded-2xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2"
@@ -43,97 +44,4 @@
 {{>layouts/footer}}
 </body>
 
-<script>
-    // 시작하기 버튼 누르면. 사용자의 bmi를 측정할수있게. cm / , kg / 나이 입력
-
-    let start_btn = document.querySelector("#start_btn");
-    let main_con = document.querySelector("#main_con");
-
-
-
-    start_btn.addEventListener("click" , () => {
-        console.log(`시작하기 버튼 눌림 -> ${main_con} 열림.`)
-        main_con.innerHTML = '';
-
-
-          const form = document.createElement("form");
-          form.id = 'myDynamicForm';
-          form.action = '/tdee';   // ★ 컨트롤러 매핑 URL
-          form.method = 'post';         // ★ GET/POST 명확히
-        start_btn.remove();
-
-        form.innerHTML = `
-        <div>
-            <h2 class="text-[24px] leading-tight">하루 필요 칼로리 계산</h2>
-            <div class='flex flex-col mt-6'>
-            <span>몸무게(kg)</span>
-            <input class="border border-gray-200 w-full" type="text "name="kg"  />
-            <span>키(cm)</span>
-            <input class="border border-gray-200 w-full" type="text" "name="cm" />
-            <span>성별</span>
-             <select name="mw" id="lang" class="border border-gray-200">
-                <option value="남자">남자</option>
-                <option value="여자">여자</option>
-            </select>
-        <div class="mt-6">
-            <h2 class="text-[16px] leading-tight">평소 활동량을 알려주세요</h2>
-             <div>
-                <input type="radio" id="huey" type="text" " name="activity_level" value="1.20" checked />
-                <label for="huey">운동 거의 안함</label>
-             </div>
-
-             <div>
-                <input type="radio" id="dewey" name="activity_level" value="1.375" />
-                <label for="dewey">가벼운 활동(주 1-3회 , 30-45분, 가벼운 유산소/근지구력)</label>
-
-            </div>
-
-            <div>
-                <input type="radio" id="louie" name="activity_level" value="1.55" />
-                <label for="louie">보통 활동(주 3-5회, 45-60분, 중강도)</label>
-            </div>
-
-             <div>
-                <input type="radio" id="louie" name="activity_level" value="1.725" />
-                <label for="louie">높은 활동(주 6-7회, 60분+, 고강도)</label>
-            </div>
-
-            <div>
-                <input type="radio" id="louie" name="activity_level" value="1.90" />
-                <label for="louie">매우 높은 활동(육체노동 / 운동선수)</label>
-            </div>
-        <div>
-
-
-        </div>
-
-         </div>
-
-         <button
-                id="next"
-                type="submit"
-                class="mt-8 w-full py-3 rounded-2xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2"
-        >
-            다음
-        </button>
-
-         </form>
-
-        `;
-
-
-        main_con.appendChild(form);
-
-
-
-        });
-
-
-
-
-
-
-
-
-</script>
 </html>
