@@ -5,12 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 
+
+@NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
 public class Users {
     @Id
@@ -21,28 +21,48 @@ public class Users {
     @Column
     private String man_woman;
     @Column
-    private Integer age;
+    private int age;
     @Column
-    private Integer cm;
+    private int cm;
     @Column
-    private Integer kg;
+    private int kg;
     @Column
     private String activity_level;
 
+    public Long getId() {
+        return id;
+    }
 
+    public String getNickname() {
+        return nickname;
+    }
 
-//    public Users(Long id, String nickname, String is_age) {
+    public String getMan_woman() {
+        return man_woman;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getKg() {
+        return kg;
+    }
+
+    public int getCm() {
+        return cm;
+    }
+
+    public String getActivity_level() {
+        return activity_level;
+    }
+//    public Users(Long id, String nickname, String man_woman, int age, int cm, int kg, String activity_level) {
 //        this.id = id;
 //        this.nickname = nickname;
-//        this.is_age = is_age;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id=" + id +
-//                ", nickname='" + nickname + '\'' +
-//                ", is_age=" + is_age +
-//                '}';
+//        this.man_woman = man_woman;
+//        this.age = age;
+//        this.cm = cm;
+//        this.kg = kg;
+//        this.activity_level = activity_level;
 //    }
 }

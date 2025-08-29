@@ -52,3 +52,27 @@ user뒤에 s를 붙여 users로 작성해주니 문제없이 작동되었다.
 
 Question Entity의 Lombok을 통해 @NoArgsConstructor 애터네이션을 작성해서 기본생성자를 만들어주었더니 해결되었다. 
 
+4. api 전송 요청후 body값 반환이 {}가 오는 현상?
+
+문제점 : 유저의 신체정보  데이터를 저장하기 위해서 post api 요청을 하나만들어두었는데.
+데이터를 전송해서 저장해서 h2 db에 저장된것은 확인했는데. 
+요청후 전송받은 body는 {}가 오는 현상을 발견함
+
+해결 방법 : gpt한테 해당 문제에 대해서 다음과 같이 질문함 
+>스프링부트로 api 컨트롤러를 통해 post 요청을 하나만들었는데. 만약에 json 데이터 사이트를 통해 post요청에 올바르게 body에 필요한데이터를 함꼐 동봉해서 전송해서 h2 db에 저장된것은 확인햇는데 테스트사이트에서 데이터를 전송요청하고 body로 응답을 주는데 {}를 주는데 저장은됫는데 반환값은 {}인 경우 어떤 문제를 의심해볼수있는가?
+
+gpt의 말로는 DTO/엔터티 파일에 Getter가 없어서 그렇다고함.
+
+Getter를 양쪽 클래스파일에 추가해주었더니 원활하게 문제가 해결되었음.
+
+5. api 조회 요청후 빈 값이 오는 현상
+
+문제점: /api/tdee 조회 요청후 api값을 조회해와야하는데.
+조회를 못해오고있는 문제점.
+
+해결 방법 : Users entity에 @NoArgsConstructor를 붙이니깐 해결되었다.
+
+- https://curiousjinan.tistory.com/entry/spring-jpa-why-default-constructor-is-required
+
+- https://wakestand.tistory.com/926
+엔터티 기본 생성자가 없어서 발생한 문제였다.

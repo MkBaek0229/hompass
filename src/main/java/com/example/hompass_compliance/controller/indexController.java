@@ -24,20 +24,11 @@ import java.util.*;
 @Controller
 public class indexController {
     @Autowired
-    private UsersRepository userRepository;
-    @Autowired
     private QuestionRepository questionRepository;
     @Autowired
     private TopicRepository topicRepository;
 
-    private String[] random_nickname = {"돌고래", "개발자", "오랑우탄"};
 
-
-    public String createRandomNickname() {
-        Random random = new Random();
-        String nickname = this.random_nickname[random.nextInt(this.random_nickname.length)];
-        return nickname;
-    }
 
     @GetMapping({"/"})
     public String index(Model model) {
@@ -45,18 +36,7 @@ public class indexController {
         return "home";
     }
 
-    @PostMapping({"/tdee"})
-    public String tdee(UsersForm usersForm ,Model model) {
-        usersForm.setNickname(createRandomNickname());
-        // 1. DTO를 엔터티로 변환
-        Users user= usersForm.toEntity();
-        log.info(user.toString());
-        // 2. 리파지터리로 엔터티를 DB에 저장
-        Users saved = userRepository.save(user);
-        log.info(saved.toString());
-        System.out.println("요청 들어옴");
-        return "";
-    }
+
     @GetMapping({"/choice"})
     public String choice(Model model) {
         model.addAttribute("isChoice", true);

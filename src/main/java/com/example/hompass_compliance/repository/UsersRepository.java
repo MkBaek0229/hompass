@@ -6,7 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.ArrayList;
 
 public interface UsersRepository extends CrudRepository<Users, Long>{
-
     @Override
-    ArrayList<Users> findAll();
+     ArrayList<Users> findAll();
 }
