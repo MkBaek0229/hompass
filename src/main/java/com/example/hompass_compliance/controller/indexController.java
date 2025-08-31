@@ -55,20 +55,10 @@ public class indexController {
         return "redirect:/choice";
     }
 
-
-//    @PostMapping("/choice/decide")
-//    public String choiceDicide(ChoiceForm form, RedirectAttributes redirectAttributes){
-//        log.info(form.toString());
-//        // 1. DTO를 엔터티로 변환
-//        Users user= form.toEntity();
-//        log.info(user.toString());
-//        // 2. 리파지터리로 엔터티를 DB에 저장
-//        Users saved = userRepository.save(user);
-//        log.info(saved.toString());
-//
-//
-//        return "redirect:/check";
-//    }
+    @GetMapping("/check")
+    public String check(){
+        return "page/check";
+    }
 
 
 }
