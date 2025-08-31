@@ -1,33 +1,19 @@
 package com.example.hompass_compliance.controller;
 
 import com.example.hompass_compliance.dto.ChoiceForm;
-import com.example.hompass_compliance.dto.UsersForm;
-import com.example.hompass_compliance.entity.Question;
-import com.example.hompass_compliance.entity.Topic;
-import com.example.hompass_compliance.entity.Users;
-import com.example.hompass_compliance.repository.QuestionRepository;
-import com.example.hompass_compliance.repository.TopicRepository;
-import com.example.hompass_compliance.repository.UsersRepository;
 
+import com.example.hompass_compliance.entity.Users;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.*;
 
 @Slf4j
 @Controller
 public class indexController {
-    @Autowired
-    private QuestionRepository questionRepository;
-    @Autowired
-    private TopicRepository topicRepository;
-
 
 
     @GetMapping({"/"})
@@ -37,7 +23,8 @@ public class indexController {
     }
 
     @GetMapping({"/user"})
-    public String user(){
+    public String user(Model model){
+        model.addAttribute("isUsers", true);
         return "page/user";
     }
 
@@ -72,7 +59,6 @@ public class indexController {
 //    @PostMapping("/choice/decide")
 //    public String choiceDicide(ChoiceForm form, RedirectAttributes redirectAttributes){
 //        log.info(form.toString());
-//        form.setNickname(createRandomNickname());
 //        // 1. DTO를 엔터티로 변환
 //        Users user= form.toEntity();
 //        log.info(user.toString());
@@ -83,83 +69,6 @@ public class indexController {
 //
 //        return "redirect:/check";
 //    }
-
-    @GetMapping("/check")
-    public String check(Model model) {
-
-    // 3. 질문 테이블의 모든 데이터 가져오기
-    ArrayList<Question> questionEntityList = questionRepository.findAll();
-
-            System.out.println(questionEntityList);
-    // 4. 지금 질문 테이블의 모든데이터에서 id값들만 따로 추출.
-
-    ArrayList<Integer> topic_id_list = new ArrayList<>(8);
-        for(Question i : questionEntityList) {
-
-        if(topic_id_list.contains(i.getTopic_id())) {
-            continue;
-        }
-        else {
-            topic_id_list.add(i.getTopic_id());
-        }
-    }
-
-    ArrayList<Topic> topic_list = new ArrayList<>(8);
-
-    // 5. 아이디 값에 따른 name을 모델 데이터에 등록해서 뷰에뿌림.
-        for(Integer i : topic_id_list) {
-
-        Topic topicEntity = topicRepository.findAllById(i).orElse(null);
-
-        System.out.println(topicEntity);
-        topic_list.add(topicEntity);
-
-
-    }
-
-        System.out.println(topic_list);
-
-    // 6. 모델에 데이터 등록하기
-        model.addAttribute("isCheck", true);
-        model.addAttribute("topicList",topic_list);
-        return "page/check";
-    }
-
-    @GetMapping("/check/{id}")
-    public String show(@PathVariable Long id, Model model) {
-        // 1. 질문 테이블 데이터 모두 가져오기.
-        ArrayList<Question> questionEntityList = questionRepository.findAll();
-        // 2. 질문 테이블 데이터 반복문 돌리면서. topic_id값과 매개변수로 받은 id값이 일치하는 데이터만 일단 arraylist에 담을것?
-        ArrayList<Question> question_list = new ArrayList<>(8);
-        if(question_list.isEmpty()) {
-            for (Question i : questionEntityList) {
-                Long topic_id = (long) i.getTopic_id();
-                if (topic_id.equals(id)) {
-                    question_list.add(i);
-                }
-
-            }
-        } else {
-            question_list.clear();
-        }
-
-
-        // 2. 모델에 데이터 등록하기
-
-        model.addAttribute("questionList",question_list);
-
-        // 선택한 자가진단 토픽을 전달해주고싶음.
-        Topic topicEntity = topicRepository.findById(id).orElse(null);
-
-        String topicTitle = topicEntity.getName();
-
-        model.addAttribute("topicTitle",topicTitle);
-
-
-
-        return "page/test";
-    }
-
 
 
 }

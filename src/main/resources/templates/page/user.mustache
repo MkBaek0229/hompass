@@ -1,126 +1,182 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>하루 필요 칼로리 계산</title>
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>하루 필요 칼로리 계산</title>
 
-    <link href="/main.css" rel="stylesheet">
+        <link href="/main.css" rel="stylesheet">
 
-</head>
-<body class="font-['Freesentation-9Black'] mt-[10%]">
-{{>layouts/header}}
+    </head>
+    <body class="font-['GMarketSans-medium'] mt-[10%]">
+    {{>layouts/header}}
 
-<main class="max-w-[475px] mx-auto px-4 pt-4 pb-28">
+    <main class="max-w-[475px] h-[400px] mx-auto px-4 pt-4 overflow-auto">
 
-<form>
-    <h2 class="text-[24px] leading-tight">하루 필요 칼로리 계산</h2>
-    <div class='flex flex-col mt-6'>
-        <span>몸무게(kg)</span>
-        <input class="border border-gray-200 w-full" type="text" id="new-users-kg"  />
-        <span>키(cm)</span>
-        <input class="border border-gray-200 w-full" type="text" id="new-users-cm"/>
-        <span>성별</span>
-        <select id="new-users-man_woman" class="border border-gray-200">
-            <option value="남자">남자</option>
-            <option value="여자">여자</option>
-        </select>
-        <div class="mt-6">
-            <h2 class="text-[16px] leading-tight">평소 활동량을 알려주세요</h2>
-            <div>
-                <input type="radio"  name="activity_level" id="new-users-activity_level1" value="1.20" checked />
-                <label for="new-users-activity_level1">운동 거의 안함</label>
+    <form>
+        <span class="text-[12px] text-gray-500 font-['GMarketSans-light']">Hompass</span>
+        <h2 class="text-[24px] leading-tight font-['GMarketSans-heavy']">하루 필요 칼로리 계산</h2>
+        <span class="text-[12px] text-gray-500 font-['GMarketSans-light']">*TDEE(하루 섭취 칼로리) 계산을 위한 최소 정보만 간단히 입력하세요.</span>
+        <div class='flex flex-col mt-6'>
+            <span>성별</span>
+            <select id="new-users-man_woman" class="border border-gray-200 rounded-2xl p-3">
+                <option value="남자">남자</option>
+                <option value="여자">여자</option>
+            </select>
+            <br>
+
+            <div><span>나이</span><span id="waring_age_field" class="ml-2 text-[12px] text-red-500">유효 범위에 일치하는 값을 입력해주세요.</span></div>
+            <input class="border border-gray-200 w-full rounded-2xl p-3" type="text" id="new-users-age"  />
+            <span class="text-[12px] text-gray-500">유효 범위: 14–80</span>
+
+            <br>
+            <span>몸무게(kg)<span id="waring_kg_field" class="ml-2 text-[12px] text-red-500">유효 범위에 일치하는 값을 입력해주세요.</span></span>
+            <input class="border border-gray-200 w-full rounded-2xl p-3" type="text" id="new-users-kg"  />
+            <span class="text-[12px] text-gray-500">유효 범위: 30–250</span>
+            <br>
+            <span>키(cm)<span id="waring_cm_field" class="ml-2 text-[12px] text-red-500">유효 범위에 일치하는 값을 입력해주세요.</span></span>
+            <input class="border border-gray-200 w-full rounded-2xl p-3" type="text" id="new-users-cm"/>
+            <span class="text-[12px] text-gray-500">유효 범위: 100–220</span>
+            <br>
+
+            <div class="mt-6">
+                <h2 class="text-[18px] leading-tight">평소 활동량을 알려주세요</h2>
+                <div>
+                    <input type="radio"  name="activity_level" id="new-users-activity_level1" value="1.20" checked />
+                    <label for="new-users-activity_level1">운동 거의 안함</label>
+                </div>
+
+                <div>
+                    <input type="radio"  name="activity_level"  id="new-users-activity_level2" value="1.375" />
+                    <label for="new-users-activity_level2">가벼운 활동(주 1-3회 , 30-45분, 가벼운 유산소/근지구력)</label>
+
+                </div>
+
+                <div>
+                    <input type="radio"  name="activity_level" id="new-users-activity_level3" value="1.55" />
+                    <label for="new-users-activity_level3">보통 활동(주 3-5회, 45-60분, 중강도)</label>
+                </div>
+
+                <div>
+                    <input type="radio"  name="activity_level" id="new-users-activity_level4" value="1.725" />
+                    <label for="new-users-activity_level4">높은 활동(주 6-7회, 60분+, 고강도)</label>
+                </div>
+
+                <div>
+                    <input type="radio"  name="activity_level" id="new-users-activity_level5" value="1.90" />
+                    <label for="new-users-activity_level5">매우 높은 활동(육체노동 / 운동선수)</label>
+                </div>
+                <div>
+
+
+                </div>
+
             </div>
 
-            <div>
-                <input type="radio"  name="activity_level"  id="new-users-activity_level2" value="1.375" />
-                <label for="new-users-activity_level2">가벼운 활동(주 1-3회 , 30-45분, 가벼운 유산소/근지구력)</label>
 
-            </div>
-
-            <div>
-                <input type="radio"  name="activity_level" id="new-users-activity_level3" value="1.55" />
-                <label for="new-users-activity_level3">보통 활동(주 3-5회, 45-60분, 중강도)</label>
-            </div>
-
-            <div>
-                <input type="radio"  name="activity_level" id="new-users-activity_level4" value="1.725" />
-                <label for="new-users-activity_level4">높은 활동(주 6-7회, 60분+, 고강도)</label>
-            </div>
-
-            <div>
-                <input type="radio"  name="activity_level" id="new-users-activity_level5" value="1.90" />
-                <label for="new-users-activity_level5">매우 높은 활동(육체노동 / 운동선수)</label>
-            </div>
-            <div>
-
-
-            </div>
 
         </div>
-
-        <button
-                id="users-create-btn"
-                class="mt-8 w-full py-3 rounded-2xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2"
-        >
-            다음
-        </button>
-
-    </div>
-</form>
-</main>
+    </form>
+    </main>
 
 
-{{>layouts/footer}}
+    {{>layouts/footer}}
 
 
-</body>
+    </body>
 
 
-<script>
-    const $form = document.querySelector('form');
-        $form.addEventListener("submit", (event) => {
-    // 동작(이벤트)을 실행하지 못하게 막는 메서드입니다.
-        event.preventDefault();
-    });
+        <script>
+            // 유저 생성 버튼
+            const usersCreateBtn = document.querySelector("#users-create-btn");
+            // 경고 필드
+            const waringAgeField = document.querySelector("#waring_age_field");
+            const waringKgField = document.querySelector("#waring_kg_field");
+            const waringCmField = document.querySelector("#waring_cm_field");
 
-    // 유저 생성 버튼
-    const usersCreateBtn = document.querySelector("#users-create-btn");
-
-
-
-    usersCreateBtn.addEventListener("click", () => {
-    const Radiobuttons = document.querySelectorAll('input[type="radio"]');
-
-    Radiobuttons.forEach((el) => {
-         if(el.checked) {
-            console.log(el.value);
-         }
-    });
-        // 새 유저 객체 생성
-        const users = {
-            kg: document.querySelector("#new-users-kg").value,
-            cm: document.querySelector("#new-users-cm").value,
-            man_woman : document.querySelector("#new-users-man_woman").value,
-            activity_level : ""
-         };
-        console.log(users);
-
-<!--        // fetch() - 비동기 통신을 위한 API-->
-<!--        const url = "/api/user";-->
-<!--        fetch(url, {-->
-<!--            method: "POST",-->
-<!--            headers: {-->
-<!--                "Content-Type": "application/json"-->
-<!--            },-->
-<!--            body: JSON.stringify(users)-->
-<!--        })-->
-
-        console.log("등록완료");
-    });
+            // 입력요소
+            const ageInput = document.querySelector("#new-users-age");
+            const kgInput = document.querySelector("#new-users-kg");
+            const cmInput = document.querySelector("#new-users-cm");
 
 
+            usersCreateBtn.addEventListener("click", (event) => {
+            // 동작(이벤트)을 실행하지 못하게 막는 메서드입니다.
+                event.preventDefault();
+                console.log("시작");
+                waringAgeField.textContent = "";
+                waringKgField.textContent  = "";
+                waringCmField.textContent  = "";
 
-</script>
+                // 값 읽기 (문자열)
+                const ageStr = ageInput.value.trim();
+                const kgStr  = kgInput.value.trim();
+                const cmStr  = cmInput.value.trim();
 
-</html>
+                const age = Number(ageStr);
+                const kg  = Number(kgStr);
+                const cm  = Number(cmStr);
+
+                const activityLevel = document.querySelector('input[name="activity_level"]:checked')?.value;
+
+                const manWoman = document.querySelector("#new-users-man_woman").value;
+
+                let valid = true;
+
+
+                if (ageStr === "" || Number.isNaN(age)) {
+              waringAgeField.textContent = "숫자로 입력해주세요.";
+              valid = false;
+            } else if (age < 14 || age > 80) {
+              waringAgeField.textContent = "유효 범위(14–80)로 입력해주세요.";
+              valid = false;
+            }
+
+            if (kgStr === "" || Number.isNaN(kg)) {
+              waringKgField.textContent = "숫자로 입력해주세요.";
+              valid = false;
+            } else if (kg < 30 || kg > 250) {
+              waringKgField.textContent = "유효 범위(30–250)로 입력해주세요.";
+              valid = false;
+            }
+
+            if (cmStr === "" || Number.isNaN(cm)) {
+              waringCmField.textContent = "숫자로 입력해주세요.";
+              valid = false;
+            } else if (cm < 100 || cm > 220) {
+              waringCmField.textContent = "유효 범위(100–220)로 입력해주세요.";
+              valid = false;
+            }
+
+            // 사용자가 요청한 "abc" 테스트 — 이제 정상 동작합니다.
+            if (ageStr === "abc") {
+              console.log("abc");
+            }
+
+            if (!valid) return;
+
+            // 서버로 보낼 페이로드
+            const users = {
+              age,
+              kg,
+              cm,
+              man_woman: manWoman,
+              activity_level: parseFloat(activityLevel)
+            };
+
+            console.log("payload:", users);
+
+            localStorage.setItem("draft_users", JSON.stringify(users));
+            window.location.href = "/choice";
+        });
+
+
+
+
+
+
+
+
+    </script>
+
+    </html>

@@ -1,29 +1,41 @@
 <footer class="w-full h-[90px]">
-    <div class="mx-auto max-w-[475px] flex justify-center h-[100%] items-center gap-1">
-
-
-    {{#isHome}}
-        <button class="bg-black rounded-full text-white font-bold py-2 px-4 rounded">홈</button>
-        <button class="text-gray-400 rounded-full border border-dotted border-gray-500 py-2 px-4 rounded">선택</button>
-        <button class="text-gray-400 rounded-full border border-dotted border-gray-500 py-2 px-4 rounded">체크</button>
-        <button class="text-gray-400 rounded-full border border-dotted border-gray-500 py-2 px-4 rounded">결과</button>
-        <button class="text-gray-400 rounded-full border border-dotted border-gray-500 py-2 px-4 rounded">나침반</button>
+        {{#isHome}}
+            <a
+                    href="/user"
+                    id="start_btn"
+                    data-dialog-target="modal"
+                    class="mt-8 mx-auto max-w-[475px] w-full py-3 rounded-5xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2 fixed absolute bottom-0 right-0 left-0"
+                    aria-label="시작하기"
+            >
+                시작하기
+            </a>
     {{/isHome}}
-    {{#isChoice}}
-        <button class="text-black rounded-full border border-solid border-black py-2 px-4 rounded">홈</button>
-        <button class="bg-black rounded-full text-white font-bold py-2 px-4 rounded">선택</button>
-        <button class="text-gray-400 rounded-full border border-dotted border-gray-500 py-2 px-4 rounded">체크</button>
-        <button class="text-gray-400 rounded-full border border-dotted border-gray-500 py-2 px-4 rounded">결과</button>
-        <button class="text-gray-400 rounded-full border border-dotted border-gray-500 py-2 px-4 rounded">나침반</button>
-    {{/isChoice}}
+        {{#isUsers}}
+            <button
+                    id="users-create-btn"
+                    type="button"
+                    class="mx-auto max-w-[475px] w-full py-3 rounded-5xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2 fixed bottom-0 left-0 right-0"
+            >
+                다음
+            </button>
+            {{/isUsers}}
+<!--    {{#isChoice}}-->
+    {{#selectedMenu}}
+        <form action="/choice/decide" method="post">
+            <button
+                    id="start-diagnosis-btn"
+                    data-selected="{{selectedMenu}}"
+                    type="button"
+                    class="mx-auto max-w-[475px] w-full py-3 rounded-5xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2 fixed bottom-0 left-0 right-0"
+            >
+                나의 일일 탄단지 섭취량 확인하기
 
-    {{#isCheck}}
-            <button class="text-black rounded-full border border-solid border-black py-2 px-4 rounded">홈</button>
-            <button class="text-black rounded-full border border-solid border-black py-2 px-4 rounded">선택</button>
-            <button class="bg-black rounded-full text-white font-bold py-2 px-4 rounded">체크</button>
-            <button class="text-gray-400 rounded-full border border-dotted border-gray-500 py-2 px-4 rounded">결과</button>
-            <button class="text-gray-400 rounded-full border border-dotted border-gray-500 py-2 px-4 rounded">나침반</button>
-    {{/isCheck}}
+            </button>
+        </form>
+    {{/selectedMenu}}
+<!--    {{/isChoice}}-->
 
-    </div>
+<!--    {{#isCheck}}-->
+<!--    {{/isCheck}}-->
+
 </footer>

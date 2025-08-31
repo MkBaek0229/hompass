@@ -7,12 +7,12 @@
 
     <link href="/main.css" rel="stylesheet">
 </head>
-<body class="font-['Freesentation-9Black'] mt-[10%]">
+<body class="font-['GMarketSans-heavy'] mt-[10%]">
 {{>layouts/header}}
 <main class="max-w-[475px] mx-auto px-4 pt-4 pb-28">
     <section aria-label="사용자 연령 선택 페이지">
         <div class="px-2 py-6">
-            <h1 class="text-[32px] leading-tight">현재 사용자의<br> 영양 섭취 목표는 무엇인가요?</h1>
+            <h1 class="text-[24px] leading-tight">현재 사용자의<br> 영양 섭취 목표는 무엇인가요?</h1>
         </div>
 
 
@@ -103,19 +103,6 @@
         </form>
 
 
-        {{#selectedMenu}}
-            <form action="/choice/decide" method="post">
-                <button
-                        name="decide"
-                        value="{{selectedMenu}}"
-                        type="submit"
-                        class="mt-8 w-full py-3 rounded-2xl bg-black hover:bg-sig-color text-white flex items-center justify-center gap-2"
-                >
-                    자가진단 시작
-
-                </button>
-            </form>
-        {{/selectedMenu}}
 
 
 
@@ -125,4 +112,67 @@
 </main>
 {{>layouts/footer}}
 </body>
+<script>
+    (function () {
+      const btn = document.querySelector("#start-diagnosis-btn");
+
+      if (!btn) return;
+      const selectedMenu = btn.getAttribute("data-selected");
+
+      const mealGoalsMap = {
+        "1번선택지": 0.8, // 근육량 증가
+        "2번선택지": 1.0, // 생활형 섭취
+        "3번선택지": 1.2  // 다이어트
+      };
+
+      btn.addEventListener("click", async () => {
+      console.log("hi");
+        const draftRaw = localStorage.getItem("draft_users");
+        if (!draftRaw) {
+          alert("먼저 BMI 정보를 입력해주세요.");
+          window.location.href = "/user"; // BMI 입력 페이지 경로로 맞춰줘
+          return;
+        }
+
+        let draft;
+        try {
+          draft = JSON.parse(draftRaw);
+        } catch (e) {
+          console.error("draft parse error", e);
+          alert("임시 저장 데이터가 손상되었습니다. 다시 입력해주세요.");
+          localStorage.removeItem("draft_users");
+          window.location.href = "/user";
+          return;
+        }
+
+        const payload = {
+          ...draft,
+          meal_goals: mealGoalsMap[selectedMenu] ?? null
+        };
+
+        try {
+          const res = await fetch("/api/user", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+
+          if (!res.ok) {
+            const txt = await res.text().catch(() => "");
+            console.error("save failed", res.status, txt);
+            alert("저장에 실패했습니다. 잠시 후 다시 시도해주세요.");
+            return;
+          }
+
+          localStorage.removeItem("draft_users");
+          window.location.href = "/check";
+        } catch (err) {
+          console.error(err);
+          alert("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+        }
+      });
+    })();
+</script>
+
+
 </html>

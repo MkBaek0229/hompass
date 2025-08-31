@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 
 
 @NoArgsConstructor
@@ -28,7 +29,10 @@ public class Users {
     @Column
     private int kg;
     @Column
-    private String activity_level;
+    private BigDecimal activity_level;
+
+    @Column
+    private BigDecimal meal_goals;
 
 
 
@@ -37,7 +41,7 @@ public class Users {
         if (dto.getId() != null)
             throw new IllegalArgumentException("이미 존재하는 유저입니다.");
         // 엔터티 생성 및 반환
-        return new Users(dto.getId(),dto.getNickname(), dto.getMan_woman(), dto.getAge(), dto.getCm(), dto.getKg(), dto.getActivity_level());
+        return new Users(dto.getId(),dto.getNickname(), dto.getMan_woman(), dto.getAge(), dto.getCm(), dto.getKg(), dto.getActivity_level() , dto.getMeal_goals());
     }
 
 
@@ -65,9 +69,14 @@ public class Users {
         return cm;
     }
 
-    public String getActivity_level() {
+    public BigDecimal getActivity_level() {
         return activity_level;
     }
+
+    public BigDecimal getMeal_goals() {
+        return meal_goals;
+    }
+
 //    public Users(Long id, String nickname, String man_woman, int age, int cm, int kg, String activity_level) {
 //        this.id = id;
 //        this.nickname = nickname;

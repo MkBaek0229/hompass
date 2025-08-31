@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -18,8 +20,8 @@ public class UsersForm {
     private int age;
     private int cm;
     private int kg;
-    private String activity_level;
-
+    private BigDecimal activity_level;
+    private BigDecimal meal_goals;
 
 
     public static UsersForm createUsersForm(Users users) {
@@ -30,7 +32,8 @@ public class UsersForm {
                 users.getAge(),
                 users.getCm(),
                 users.getKg(),
-                users.getActivity_level()
+                users.getActivity_level(),
+                users.getMeal_goals()
         );
     }
 
@@ -60,7 +63,7 @@ public class UsersForm {
 //    }
 
     public Users toEntity() {
-        return new Users(null,nickname,man_woman,age,cm,kg,activity_level);
+        return new Users(null,nickname,man_woman,age,cm,kg,activity_level,meal_goals);
     }
 
 
@@ -88,11 +91,15 @@ public class UsersForm {
         return kg;
     }
 
-    public String getActivity_level() {
+    public BigDecimal getActivity_level() {
         return activity_level;
     }
-
+    public BigDecimal getMeal_goals() {
+        return meal_goals;
+    }
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+
 }
