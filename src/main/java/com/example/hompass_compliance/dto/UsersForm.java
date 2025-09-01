@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,9 +22,8 @@ public class UsersForm {
     private int age;
     private int cm;
     private int kg;
-    private BigDecimal activity_level;
-    private BigDecimal meal_goals;
-
+    private float activity_level;
+    private float meal_goals;
 
     public static UsersForm createUsersForm(Users users) {
         return new UsersForm(
@@ -91,10 +92,10 @@ public class UsersForm {
         return kg;
     }
 
-    public BigDecimal getActivity_level() {
+    public float getActivity_level() {
         return activity_level;
     }
-    public BigDecimal getMeal_goals() {
+    public float getMeal_goals() {
         return meal_goals;
     }
     public void setNickname(String nickname) {

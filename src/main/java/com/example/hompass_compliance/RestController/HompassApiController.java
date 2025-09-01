@@ -33,6 +33,7 @@ public class HompassApiController {
     // POST
     @PostMapping("/api/user")
     public ResponseEntity<UsersForm> create(@RequestBody UsersForm dto) {
+        // 어노테이션으로 유효성 검증 추가하기.
         // 서비스에 위임
         UsersForm usersForm = usersService.create(dto);
         // 결과 응답

@@ -120,9 +120,9 @@
       const selectedMenu = btn.getAttribute("data-selected");
 
       const mealGoalsMap = {
-        "1번선택지": 0.8, // 근육량 증가
+        "1번선택지": 1.2, // 근육량 증가
         "2번선택지": 1.0, // 생활형 섭취
-        "3번선택지": 1.2  // 다이어트
+        "3번선택지": 0.8  // 다이어트
       };
 
       btn.addEventListener("click", async () => {
@@ -157,6 +157,7 @@
             body: JSON.stringify(payload)
           });
 
+
           if (!res.ok) {
             const txt = await res.text().catch(() => "");
             console.error("save failed", res.status, txt);
@@ -166,6 +167,8 @@
 
           localStorage.removeItem("tdee");
           window.location.href = "/check";
+
+
         } catch (err) {
           console.error(err);
           alert("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");

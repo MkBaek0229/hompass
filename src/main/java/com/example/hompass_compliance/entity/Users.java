@@ -1,10 +1,7 @@
 package com.example.hompass_compliance.entity;
 
 import com.example.hompass_compliance.dto.UsersForm;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +13,7 @@ import java.math.BigDecimal;
 @Entity
 public class Users {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String nickname;
@@ -29,10 +26,11 @@ public class Users {
     @Column
     private int kg;
     @Column
-    private BigDecimal activity_level;
+    private float activity_level;
 
     @Column
-    private BigDecimal meal_goals;
+    private float meal_goals;
+
 
 
 
@@ -69,11 +67,11 @@ public class Users {
         return cm;
     }
 
-    public BigDecimal getActivity_level() {
+    public float getActivity_level() {
         return activity_level;
     }
 
-    public BigDecimal getMeal_goals() {
+    public float getMeal_goals() {
         return meal_goals;
     }
 
