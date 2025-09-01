@@ -587,12 +587,20 @@ video {
   margin-right: auto;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
 }
 
 .mt-1 {
   margin-top: 0.25rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
 }
 
 .mt-2 {
@@ -603,8 +611,8 @@ video {
   margin-top: 0.75rem;
 }
 
-.mt-5 {
-  margin-top: 1.25rem;
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .mt-6 {
@@ -621,6 +629,10 @@ video {
 
 .mt-\[5\%\] {
   margin-top: 5%;
+}
+
+.inline-block {
+  display: inline-block;
 }
 
 .flex {
@@ -643,6 +655,14 @@ video {
   height: 100%;
 }
 
+.h-\[150px\] {
+  height: 150px;
+}
+
+.h-\[15px\] {
+  height: 15px;
+}
+
 .h-\[400px\] {
   height: 400px;
 }
@@ -651,8 +671,16 @@ video {
   height: 90px;
 }
 
+.w-2\/4 {
+  width: 50%;
+}
+
 .w-4 {
   width: 1rem;
+}
+
+.w-\[15px\] {
+  width: 15px;
 }
 
 .w-full {
@@ -679,8 +707,16 @@ video {
   justify-content: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
 }
 
 .gap-\[20px\] {
@@ -705,12 +741,32 @@ video {
   border-radius: 1rem;
 }
 
+.rounded-\[15px\] {
+  border-radius: 15px;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
 
+.rounded-tl-\[5px\] {
+  border-top-left-radius: 5px;
+}
+
+.rounded-tr-\[5px\] {
+  border-top-right-radius: 5px;
+}
+
 .border {
   border-width: 1px;
+}
+
+.border-\[6px\] {
+  border-width: 6px;
+}
+
+.border-t-\[5px\] {
+  border-top-width: 5px;
 }
 
 .border-solid {
@@ -727,6 +783,11 @@ video {
   border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
 }
 
+.border-t-black {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
+}
+
 .bg-\[\#2042FF\] {
   --tw-bg-opacity: 1;
   background-color: rgb(32 66 255 / var(--tw-bg-opacity, 1));
@@ -737,18 +798,23 @@ video {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
 }
 
+.bg-blue-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--tw-bg-opacity, 1));
+}
+
 .bg-green-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(74 222 128 / var(--tw-bg-opacity, 1));
 }
 
-.bg-white {
+.bg-red-400 {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity, 1));
 }
 
-.p-2 {
-  padding: 0.5rem;
+.bg-repeat-x {
+  background-repeat: repeat-x;
 }
 
 .p-3 {
@@ -805,16 +871,24 @@ video {
   font-family: 'Freesentation-9Black';
 }
 
-.font-\[\'GMarketSans-heavy\'\] {
-  font-family: 'GMarketSans-heavy';
+.font-\[\'Paperozi-300\'\] {
+  font-family: 'Paperozi-300';
 }
 
-.font-\[\'GMarketSans-light\'\] {
-  font-family: 'GMarketSans-light';
+.font-\[\'Paperozi-600\'\] {
+  font-family: 'Paperozi-600';
 }
 
-.font-\[\'GMarketSans-medium\'\] {
-  font-family: 'GMarketSans-medium';
+.font-\[\'Paperozi-700\'\] {
+  font-family: 'Paperozi-700';
+}
+
+.font-\[\'Paperozi-800\'\] {
+  font-family: 'Paperozi-800';
+}
+
+.font-\[\'Paperozi-900\'\] {
+  font-family: 'Paperozi-900';
 }
 
 .text-3xl {
@@ -915,29 +989,29 @@ video {
 }
 
 @font-face {
-  font-family: 'Freesentation-9Black';
+  font-family: 'Paperozi-100';
 
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2');
 
-  font-weight: 900;
+  font-weight: 100;
 
-  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Freesentation-5Medium';
+  font-family: 'Paperozi-200';
 
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-5Medium.woff2') format('woff2');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2');
 
-  font-weight: 500;
+  font-weight: 200;
 
-  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'GMarketSans-light';
+  font-family: 'Paperozi-300';
 
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2');
 
   font-weight: 300;
 
@@ -945,9 +1019,19 @@ video {
 }
 
 @font-face {
-  font-family: 'GMarketSans-medium';
+  font-family: 'Paperozi-400';
 
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+
+  font-weight: 400;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperozi-500';
+
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2');
 
   font-weight: 500;
 
@@ -955,11 +1039,41 @@ video {
 }
 
 @font-face {
-  font-family: 'GMarketSans-heavy';
+  font-family: 'Paperozi-600';
 
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2');
+
+  font-weight: 600;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperozi-700';
+
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');
 
   font-weight: 700;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperozi-800';
+
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
+
+  font-weight: 800;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paperozi-900';
+
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');
+
+  font-weight: 900;
 
   font-display: swap;
 }
