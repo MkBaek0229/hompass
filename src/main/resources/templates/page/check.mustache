@@ -35,6 +35,9 @@
         </div>
     </seciton>
 
+{{#isFood}}
+{{>layouts/food_modal}}
+{{/isFood}}
 
 </main>
 {{>layouts/footer}}
@@ -44,7 +47,13 @@
     let carb = document.querySelector("#carb");
     let protein = document.querySelector("#protein");
     let fat = document.querySelector("#fat");
+
     const resetButton = document.querySelector("#users-reset-button");
+    const recordButton = document.querySelector("#users-record-food");
+
+
+
+
     (async () => {
       const usersRaw = localStorage.getItem("users");
           if (!usersRaw) {
@@ -100,6 +109,9 @@
          location.reload(true);
          });
 
+        recordButton.addEventListener("click" , () => {
+              window.location.href = "/food";
+        });
 </script>
 
 </html>

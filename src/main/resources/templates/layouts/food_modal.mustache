@@ -1,0 +1,39 @@
+<!-- 예시: src/main/resources/templates/modal-view.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal View</title>
+    <link href="/main.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="relative">
+    <div class="absolute max-w-[285px] w-full h-[400px] top-2/4 left-2/4 -translate-x-1/2 -translate-y-1/2 bg-white rounded shadow-lg">
+        <!-- Your modal content -->
+        <h2 class="text-lg mb-4 text-center mt-2 text-sig-color">{{titleMent}}</h2>
+        {{#level1}}
+            <div class="flex flex-col">
+                <button>탄수화물</button>
+                <button>단백질</button>
+                <button>지방</button>
+            </div>
+        {{/level1}}
+        {{#level2}}
+            <div class="flex flex-col">
+                <div>
+
+                </div>
+
+
+            </div>
+        {{/level2}}
+        <button class="mt-4 py-3 w-full bg-sig-color text-white rounded fixed bottom-0 left-0 right-0">닫기</button>
+    </div>
+</div>
+
+
+
+</body>
+</html>

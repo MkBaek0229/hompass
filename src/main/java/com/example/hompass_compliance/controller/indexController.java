@@ -58,9 +58,15 @@ public class indexController {
     @GetMapping("/check")
     public String check(Model model){
         model.addAttribute("isCheck", true);
-
-
         return "page/check";
+    }
+
+    @GetMapping("/food")
+    public String foodModal(Model model,RedirectAttributes redirect) {
+        redirect.addFlashAttribute("isFood", true);
+        redirect.addFlashAttribute("level1", true);
+        redirect.addFlashAttribute("titleMent", "내가 찾는 영양이는?");
+        return "redirect:/check";
     }
 
 
