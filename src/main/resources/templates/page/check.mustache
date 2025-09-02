@@ -18,12 +18,12 @@
     <section class="flex gap-8 font-['Paperozi-600'] mt-4 mb-4">
     <div>
         <h2 class="font-['Paperozi-800'] text-[18px]">목표 칼로리</h2>
-        <p id="kcal">2822<span>kcal</span></p>
+        <p id="kcal">불러오는중입니다<span>kcal</span></p>
     </div>
     <div>
-        <p><div class="w-[15px] h-[15px] bg-blue-400 inline-block rounded-full"></div> <span class="font-['Paperozi-800']">탄수화물</span> <span id="carb">352<span>g</span></span></p>
-        <p><div class="w-[15px] h-[15px] bg-green-400 inline-block rounded-full"></div><span></span> <span class="font-['Paperozi-800']">단백질</span><span id="protein">212<span>g</span></span></p>
-        <p><div class="w-[15px] h-[15px] bg-red-400 inline-block rounded-full"></div><span></span> <span class="font-['Paperozi-800']">지방</span> <span id="fat">63<span>g</span></span></p>
+        <p><div class="w-[15px] h-[15px] bg-blue-400 inline-block rounded-full"></div> <span class="font-['Paperozi-800']">탄수화물</span> <span id="carb">불러오는중입니다<span>g</span></span></p>
+        <p><div class="w-[15px] h-[15px] bg-green-400 inline-block rounded-full"></div><span></span> <span class="font-['Paperozi-800']">단백질</span><span id="protein">불러오는중입니다<span>g</span></span></p>
+        <p><div class="w-[15px] h-[15px] bg-red-400 inline-block rounded-full"></div><span></span> <span class="font-['Paperozi-800']">지방</span> <span id="fat">불러오는중입니다<span>g</span></span></p>
     </div>
     </section>
 
@@ -44,7 +44,7 @@
     let carb = document.querySelector("#carb");
     let protein = document.querySelector("#protein");
     let fat = document.querySelector("#fat");
-
+    const resetButton = document.querySelector("#users-reset-button");
     (async () => {
       const usersRaw = localStorage.getItem("users");
           if (!usersRaw) {
@@ -94,6 +94,12 @@
             alert("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
           }
         })();
+
+        resetButton.addEventListener("click" , () => {
+         localStorage.removeItem("users")
+         location.reload(true);
+         });
+
 </script>
 
 </html>

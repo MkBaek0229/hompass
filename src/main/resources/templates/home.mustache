@@ -35,4 +35,11 @@
 {{>layouts/footer}}
 </body>
 
+<script>
+    const usersRaw = localStorage.getItem("users");
+    if(usersRaw){
+        window.location.href = "/check";
+    }
+</script>
+
 </html>

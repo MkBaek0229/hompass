@@ -56,7 +56,10 @@ public class indexController {
     }
 
     @GetMapping("/check")
-    public String check(){
+    public String check(Model model){
+        model.addAttribute("isCheck", true);
+
+
         return "page/check";
     }
 
