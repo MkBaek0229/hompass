@@ -4,17 +4,22 @@ import com.example.hompass_compliance.dto.CalResultForm;
 import com.example.hompass_compliance.dto.UsersForm;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Map;
 
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
-
-public class CalResult {
+public class CalResult extends BaseEntity{
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private int kcal;
@@ -25,20 +30,24 @@ public class CalResult {
     @Column
     private int fat;
 
-    @OneToOne
-    @JoinColumn(name="users_id")
+
+    @ManyToOne
+    @JoinColumn(name="users_id", nullable = false)
     private Users users;
 
-    public static CalResult createResult(CalResultForm dto) {
-        // 예외를 발생시킴.
-        if (dto.getId() != null)
-            throw new IllegalArgumentException("이미 존재하는 결과입니다.");
-        // 엔터티 생성 및 반환
-        return CalResult(dto.getId(), dto.getKcal(), dto.getCarb(), dto.getProtein(), dto.getFat());
 
+    public CalResult(Long id, int kcal, int protein, int carb, int fat, Users users) {
+        this.id = id;
+        this.kcal = kcal;
+        this.protein = protein;
+        this.carb = carb;
+        this.fat = fat;
+        this.users = users;
     }
 
-
+    public static CalResult createResult(int kcal, int protein, int carb, int fat, Users user) {
+        return new CalResult(null, kcal, protein, carb, fat, user); // @AllArgsConstructor 사용 시 필드 순서에 맞게
+    }
 
     public Long getId() {
         return id;
@@ -61,4 +70,7 @@ public class CalResult {
     }
 
 
+    public Users getUsers() {
+        return users;
+    }
 }

@@ -164,8 +164,14 @@
             alert("저장에 실패했습니다. 잠시 후 다시 시도해주세요.");
             return;
           }
-
           localStorage.removeItem("tdee");
+
+             // 응답 JSON 꺼내기
+            const data = await res.json();
+            console.log(data);
+            localStorage.setItem("users", JSON.stringify(data));
+
+
           window.location.href = "/check";
 
 

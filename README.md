@@ -1,6 +1,5 @@
 # 건강관리 웹앱 - Hompass
 
-
 # 환경 설정
 1. Tailwind css 라이브러리
 - 참조 문서 :
@@ -9,9 +8,12 @@
 # 요구사항 척도
 
 - [o] 사용자는 hompass의 메인 화면을 확인 할 수 있다. (로고와 타이틀이 작성된 헤더)
-- [o] 사용자는 TDEE(하루 필요 칼로리) 계산을 위해 성별, 나이 , 몸무게 , 키 , 평소 활동량에 대해 입력 받고 local_storage에 저장한 상태로 다음페이지로
-이동 할 수 있어야 한다.
-- [o] 사용자는 TDEE 정보를 local_storage로 넘겨받고 영양 섭취 목표를 선택 받을 수 있어야 한다.
+- [o] 사용자는 hompass에 대한 간단한 설명 텍스트가 적혀있는 설명 섹션을 확인 할 수 있어야 한다.
+- [o] 사용자는 hompass의 홈화면에서 시작하기 버튼을 눌러서. 자가진단 화면페이지로 넘어갈수 있어야 한다.
+- [o] 사용자는 hompass의 두번째 하루 필요 칼로리 계산 페이지에서 사용자의 성별을 입력 받을 수 있다.
+- [o] 사용자는 hompass의 두번째 하루 필요 칼로리 계산 페이지에서 사용자의 나이를 입력 받을 수 있다.
+- [o] 사용자는 hompass의 두번째 하루 필요 칼로리 계산 페이지에서 사용자의 키를 입력 받을 수 있다.
+- [o] 사용자는 hompass의 두번째 하루 필요 칼로리 계산 페이지에서 사용자의 활동량을 라디오 버튼으로 입력 받을 수 있다.
 
 # 문제 해결 사항
 1. Tailwind css 라이브러리 설치시 과거의 포스팅글 (2023)년 기준
@@ -75,3 +77,38 @@ Getter를 양쪽 클래스파일에 추가해주었더니 원활하게 문제가
 
 - https://wakestand.tistory.com/926
 엔터티 기본 생성자가 없어서 발생한 문제였다.
+
+
+6. create_at 속성 자동 생성이 안됨.
+
+문제점 : CalResult 더미데이터 삽입 테스트를 진행하기 위해 결과 저장 날짜 정보인 create_at이 자동으로 현재시간으로 매칭이 되게끔 설정함.
+
+참조한 문서
+- https://hulrud.tistory.com/76 
+
+![img.png](img.png) 
+
+더미데이터 삽입후 null로 찍히는것을 확인함. 
+
+구글링을 해보니. 이 기능은 Spring Data JPA Auditing 기능으로 무언가를 설정해줘야하는것으로 확인됨. 
+![img_1.png](img_1.png)
+
+시도 1 
+-https://joyerim.tistory.com/17 
+다음의 문서를 따라해서 baseentity를 따로 만들어두고 상속해서 사용하게하였음
+-> but 해결되지 않음 , 대신에 엔터티를 상속해서 사용하는 개념에 대한 지식을 얻음
+
+
+시도 2
+- gpt 에게 다음과 같은 프롬프팅 질문
+> 다음과같이 JPA Auditing기능을활성화시켜 생성,수정날짜에 대한 속성을 자동으로 등록되게 해두엇는데 data.sql을통해 더미데이터를 삽입하였고 h2콘솔에서 조회해보니 해당 속성들이 null로 찍히는데 이유가뭘까
+
+- gpt의 답 :
+> 좋은 질문입니다. 요약하면 JPA Auditing은 “엔티티가 JPA를 통해 저장/수정될 때”만 동작하고, data.sql로 SQL을 직접 실행해 넣은 더미 데이터는 엔티티 리스너가 전혀 개입하지 않기 때문에 @CreatedDate, @LastModifiedDate가 NULL로 남습니다. data.sql은 지금처럼 단순 INSERT만 하죠.
+
+JPA를 통해 데이터를 삽입한게 아니라 DATA.SQL로 직접 쿼리문을 작성해 기입한거라 안된것.
+
+해결 방법 : 쿼리문 자체에서 CURRENT_TIMESTMAP 함수로 직접 현재 시간 넣어줌.
+
+> INSERT INTO CAL_RESULT(users_id, kcal, carb, protein, fat, created_at, updated_at)
+VALUES (1, 2800, 500, 245, 68, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);

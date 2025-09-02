@@ -18,12 +18,12 @@
     <section class="flex gap-8 font-['Paperozi-600'] mt-4 mb-4">
     <div>
         <h2 class="font-['Paperozi-800'] text-[18px]">목표 칼로리</h2>
-        <p>2822<span>kcal</span></p>
+        <p id="kcal">2822<span>kcal</span></p>
     </div>
     <div>
-        <p><div class="w-[15px] h-[15px] bg-blue-400 inline-block rounded-full"></div> <span class="font-['Paperozi-800']">탄수화물</span> <span>352g</span></p>
-        <p><div class="w-[15px] h-[15px] bg-green-400 inline-block rounded-full"></div><span></span> <span class="font-['Paperozi-800']">단백질</span><span>212g</span></p>
-        <p><div class="w-[15px] h-[15px] bg-red-400 inline-block rounded-full"></div><span></span> <span class="font-['Paperozi-800']">지방</span> <span>63g</span></p>
+        <p><div class="w-[15px] h-[15px] bg-blue-400 inline-block rounded-full"></div> <span class="font-['Paperozi-800']">탄수화물</span> <span id="carb">352<span>g</span></span></p>
+        <p><div class="w-[15px] h-[15px] bg-green-400 inline-block rounded-full"></div><span></span> <span class="font-['Paperozi-800']">단백질</span><span id="protein">212<span>g</span></span></p>
+        <p><div class="w-[15px] h-[15px] bg-red-400 inline-block rounded-full"></div><span></span> <span class="font-['Paperozi-800']">지방</span> <span id="fat">63<span>g</span></span></p>
     </div>
     </section>
 
@@ -39,6 +39,61 @@
 </main>
 {{>layouts/footer}}
 </body>
+<script>
+    let kcal = document.querySelector("#kcal");
+    let carb = document.querySelector("#carb");
+    let protein = document.querySelector("#protein");
+    let fat = document.querySelector("#fat");
 
+    (async () => {
+      const usersRaw = localStorage.getItem("users");
+          if (!usersRaw) {
+            alert("존재 하지 않은 유저입니다. 등록을 먼저해주세요.");
+            window.location.href = "/user"; // BMI 입력 페이지 경로로 맞춰줘
+          }
+
+          let user;
+          try {
+            user = JSON.parse(usersRaw);
+          } catch (e) {
+            console.error("user parse error", e);
+            alert("임시 저장 데이터가 손상되었습니다. 다시 입력해주세요.");
+            localStorage.removeItem("users");
+            window.location.href = "/user";
+          }
+
+          const user_id = user.id;
+              console.log(user_id);
+
+          if (user_id == null) {
+            alert("유저 ID가 없습니다. 다시 등록해주세요.");
+            window.location.href = "/user";
+          }
+          try {
+              const res = await fetch(`/api/user/${user_id}/user_result`, {
+              method: "GET",
+            });
+
+            if (!res.ok) {
+              const txt = await res.text().catch(() => "");
+              console.error("save failed", res.status, txt);
+              alert("저장에 실패했습니다. 잠시 후 다시 시도해주세요.");
+              return;
+            }
+
+             // 응답 JSON 꺼내기
+              const result = await res.json();
+              console.log(result);
+
+            kcal.innerText = result[0].kcal;
+            carb.innerText = result[0].carb;
+            protein.innerText = result[0].protein;
+            fat.innerText = result[0].fat;
+          } catch (err) {
+            console.error(err);
+            alert("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+          }
+        })();
+</script>
 
 </html>

@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -101,6 +102,7 @@ public class UsersForm {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
 
 
 }

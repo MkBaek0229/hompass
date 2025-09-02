@@ -1,8 +1,10 @@
 package com.example.hompass_compliance.service;
 
+import com.example.hompass_compliance.dto.CalResultForm;
 import com.example.hompass_compliance.dto.UsersForm;
 import com.example.hompass_compliance.entity.CalResult;
 import com.example.hompass_compliance.entity.Users;
+import com.example.hompass_compliance.repository.CalResultRepository;
 import com.example.hompass_compliance.repository.UsersRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class UsersService {
@@ -28,6 +28,8 @@ public class UsersService {
 
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private CalResultRepository calResultRepository;
 
     public ArrayList<UsersForm> users(){
         // 전체 조회
@@ -64,6 +66,7 @@ public class UsersService {
         int carb;
         int fat;
 
+//        int users_id = Math.toIntExact(created.getId());
         int kg = created.getKg();
         int cm = created.getCm();
         int age = created.getAge();
@@ -88,16 +91,28 @@ public class UsersService {
         System.out.println(carb);
         System.out.println(fat);
 
-        // 4. result 테이블에 데이터 추가하기
-        // 4-1. 부모인 user가 존재하는지 확인
-        Users users = usersRepository.findById(created.getId())
-                .orElseThrow(() -> new IllegalArgumentException("결과 생성 실패! " +
-                        "대상 유저가 존재하지 않습니다."));
+//        // 3-1 결과 엔터티의 모든 데이터를 조회해오기. -> 가장 마지막 id를 알아 내기 위함?
+//        ArrayList<CalResult> calResults = calResultRepository.findAll();
+//        int size = calResults.size();
+//
+//        // Map에다가 담아서 보낸다
+//        Map<String, Integer> r = new HashMap<>();
+//
+//        r.put("id", size + 1);
+//        r.put("kcal",kcal);
+//        r.put("protein",protein);
+//        r.put("carb",carb);
+//        r.put("fat",fat);
+//        r.put("users_id", users_id);
 
-        // 4-2 결과 엔터티 생성
-        CalResult calResult = CalResult.createResult();
 
-        System.out.println(calResult);
+//         4. 결과 엔터티 생성
+        CalResult calResult = CalResult.createResult(kcal, protein, carb, fat, created);
+
+
+        // 5. 결과 엔터티를 DB에 저장
+         calResultRepository.save(calResult);
+
 
         // 3. dto로 변환해 반환
         return UsersForm.createUsersForm(created);
